@@ -5,6 +5,8 @@ import './App.css'
 
 import * as webllm from "@mlc-ai/web-llm";
 import { CreateMLCEngine } from "@mlc-ai/web-llm";
+import Info from './Info';
+import Logo from './Logo';
 
 function App() {
   const [msg, setmsg] = useState([
@@ -16,14 +18,15 @@ function App() {
   const [engine, setengine] = useState(null);
   const [input, setinput] = useState("");
   const [loading, isloading] = useState(false);
-  const [LLMload,setLLMload]=useState(false)
+  const [LLMload, setLLMload] = useState(false)
 
-  const [logos,setlogos]=useState(false);
+  const [logos, setlogos] = useState(false);
+  const [info, setinfo] = useState(false);
 
   useEffect(() => {
     const loadModel = async () => {
       const selectedModel = "RedPajama-INCITE-Chat-3B-v1-q4f32_1-MLC";
-        setLLMload(true);
+      setLLMload(true);
       try {
         const engine = await webllm.CreateMLCEngine(selectedModel, {
           initProgressCallback: ({ progress }) => {
@@ -66,31 +69,36 @@ function App() {
     <div className=' h-screen w-full'>
 
       <div className='h-full w-full relative flex justify-center items-center'> {/*The Conversation Area*/}
-  
-        <div className=' bg-white size-10 rounded-full absolute z-30 right-5 top-5 border-none' onClick={()=>{setlogos(!logos)}}><img src="/logo.png" className=' rounded-full bg-cover border-none cursor-pointer hover:shadow-[0_0_10px_#1F51FF] transition shadow-[0_0_25px_#1F51FF]' alt="" /></div>
+
+        <div className=' bg-white size-10 rounded-full absolute z-30 right-5 top-5 border-none' onClick={() => { setlogos(!logos) }}><img src="/src/assets/logo.png" className=' rounded-full bg-cover border-none cursor-pointer hover:shadow-[0_0_10px_#1F51FF] transition shadow-[0_0_25px_#1F51FF]' alt="" /></div>
+        <div className=' bg-transparent shadow-[0_0_25px_#1F51FF] size-10 rounded-full absolute z-30 left-2 top-2 border-none flex justify-center items-center ' onClick={() => { setinfo(!info) }}><i class="fa-solid fa-circle-info text-xl text-black cursor-pointer hover:text-white transition "></i></div>
         
+        {/*The LOGO Component*/}
         {
-          logos==true?
-        <div  className=' h-[30%] shadow-2xl flex justify-center items-center shadow-black rounded-4xl w-[30%] bg-white/11 backdrop-blur-3xl gap-5 absolute z-30'>
-         <a href=""><i className="fa-brands fa-github text-5xl cursor-pointer hover:text-white transition text-black"></i></a>
-         <a href="https://www.npmjs.com/package/@mlc-ai/web-llm"><i className="fa-solid fa-hexagon-nodes text-5xl text-black cursor-pointer hover:text-white transition"></i></a>
-         <a href="https://www.linkedin.com/in/kartikey-pathakb580297/"><i class="fa-brands fa-linkedin text-5xl cursor-pointer hover:text-white transition text-black"></i></a>
-         <a href="https://x.com/Kartikey7070"><i class="fa-brands fa-x-twitter text-5xl cursor-pointer hover:text-white transition text-black"></i></a>
-        </div>
-        :null
+
+          logos == true ?
+            <Logo/>
+            : null
+        }
+
+        {/*The Info Component*/}
+        {
+          info == true ?
+            <Info />
+            : null
         }
 
         <div className='messages h-[70%] w-[90%] mt-1 overflow-y-auto scroll-auto absolute top-1 md:w-[85%]'>  {/* The Whole Message Area */}
 
           {
-            LLMload==false?
-            msg.map((msgs, index) => {
-              return (
-                <div className={`chat ${(msgs.role == "user") ? "chat-end" : "chat-start"}`} key={index}>
-                  <div className=' chat-bubble'><h1>{msgs.content}</h1></div>
-                </div>
-              )
-            }):null
+            LLMload == false ?
+              msg.map((msgs, index) => {
+                return (
+                  <div className={`chat ${(msgs.role == "user") ? "chat-end" : "chat-start"}`} key={index}>
+                    <div className=' chat-bubble'><h1>{msgs.content}</h1></div>
+                  </div>
+                )
+              }) : null
           }
 
           {
@@ -100,10 +108,10 @@ function App() {
               null
           }
           {
-            LLMload==true?
-            <div className=' absolute z-30 h-full w-full flex justify-center items-center backdrop-blur-3xl'><span className="loading loading-ring loading-xl text-blue-500"></span></div>
-            :
-            null
+            LLMload == true ?
+              <div className=' absolute z-30 h-full w-full flex justify-center items-center backdrop-blur-3xl'><span className="loading loading-ring loading-xl text-blue-500"></span></div>
+              :
+              null
           }
 
         </div>
