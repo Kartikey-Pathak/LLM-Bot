@@ -22,3 +22,17 @@ This is a chatbot powered by [@mlc-ai/web-llm](https://github.com/mlc-ai/web-llm
 ```bash
 git clone https://github.com/your-username/web-llm-chat.git
 cd web-llm-chat
+
+### 2. Install dependencies
+
+npm install
+Start the development server
+
+npm run dev
+Model Download & Loading
+
+As soon as you run the dev server, the app will automatically start downloading the selected LLM model (e.g., RedPajama-INCITE-Chat-3B).
+
+You’ll see progress logs in the console like Model loading progress: XX%.
+
+Once the loader disappears from the UI, the chatbot is ready for use ✅
