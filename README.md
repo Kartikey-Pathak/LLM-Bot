@@ -13,6 +13,23 @@ This is a chatbot powered by [@mlc-ai/web-llm](https://github.com/mlc-ai/web-llm
 - Works best on **desktop/laptops** with GPU support.
 - May not work on low-end or mobile devices due to limited GPU power and WebGPU support.
 
+---
+🚨 Important Note About Vercel Hosting
+While the application is fully functional when hosted on Vercel, please note the following:
+
+The WebLLM model is downloaded entirely on the client-side, which means initial loading times can be long (especially on slower networks or devices).
+
+You might see a delay before the model starts responding — this is expected due to model weight downloading and initialization in-browser.
+
+✅ You can still explore the full UI and user experience via the hosted link.
+
+⚠️ Recommendation: For a smooth and responsive experience, we highly recommend cloning the repository locally and running the app using:
+
+npm install
+npm run dev
+
+This way, the model will only be downloaded once and then reused, resulting in faster interactions and testing.
+---
 
 ---
 
