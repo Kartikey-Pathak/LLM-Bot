@@ -67,7 +67,7 @@ function App() {
 
       <div className='h-full w-full relative flex justify-center items-center'> {/*The Conversation Area*/}
   
-        <div className=' bg-white size-10 rounded-full absolute z-30 right-5 top-5 border-none' onClick={()=>{setlogos(!logos)}}><img src="/src/assets/logo.png" className=' rounded-full bg-cover border-none cursor-pointer hover:shadow-[0_0_10px_#1F51FF] transition shadow-[0_0_25px_#1F51FF]' alt="" /></div>
+        <div className=' bg-white size-10 rounded-full absolute z-30 right-5 top-5 border-none' onClick={()=>{setlogos(!logos)}}><img src="/logo.png" className=' rounded-full bg-cover border-none cursor-pointer hover:shadow-[0_0_10px_#1F51FF] transition shadow-[0_0_25px_#1F51FF]' alt="" /></div>
         
         {
           logos==true?
